@@ -1,0 +1,46 @@
+{
+  "name": "sensorthings-mongodb-datalake",
+  "version": "1.0.0",
+  "description": "MongoDB implementation of SensorThings API data lake with OGC API Features integration",
+  "main": "index.js",
+  "scripts": {
+    "setup": "npm install && npm run setup:db",
+    "setup:db": "mongosh setup/00-connection.js && mongosh setup/01-create-database.js",
+    "generate:dates": "node data/date-dimension-generator.js",
+    "sync:features": "node utilities/sync-external-features.js",
+    "sync:ucum": "node utilities/sync-ucum-ontology.js",
+    "test:connection": "mongosh setup/00-connection.js",
+    "query:timeseries": "mongosh queries/time-series-queries.js",
+    "query:cross-lake": "mongosh queries/cross-lake-queries.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timoruohomaki/geospatial-data-as-data-lake"
+  },
+  "keywords": [
+    "sensorthings",
+    "mongodb",
+    "iot",
+    "ogc",
+    "time-series",
+    "geospatial",
+    "data-lake"
+  ],
+  "author": "Timo Ruohomäki",
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "^6.3.0",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.2",
+    "node-cron": "^3.0.3",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.54.0",
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}
